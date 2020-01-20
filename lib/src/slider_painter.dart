@@ -55,6 +55,7 @@ class SliderPainter extends CustomPainter {
     sunTextPainter.text = TextSpan(
         text: String.fromCharCode(sunIcon.codePoint),
         style: TextStyle(fontSize: 20.0, fontFamily: sunIcon.fontFamily));
+    sunTextPainter.layout();
 
     // final sun = Icons.wb_sunny;
     // var sunBuilder = ParagraphBuilder(ParagraphStyle(
@@ -80,7 +81,7 @@ class SliderPainter extends CustomPainter {
             fontSize: 40.0,
             fontFamily: FontAwesomeIcons.moon.fontFamily,
             package: FontAwesomeIcons.moon.fontPackage));
-
+    moonTextPainter.layout();
 
     // final moon = FontAwesomeIcons.moon;
     // var moonBuilder = ParagraphBuilder(ParagraphStyle(
