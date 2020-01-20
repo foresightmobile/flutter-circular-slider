@@ -50,35 +50,51 @@ class SliderPainter extends CustomPainter {
     Paint handler = _getPaint(color: handlerColor, style: PaintingStyle.fill);
     Paint handlerOutter = _getPaint(color: handlerColor, width: 2.0);
 
-    final sun = Icons.wb_sunny;
-    var sunBuilder = ParagraphBuilder(ParagraphStyle(
-      fontFamily: sun.fontFamily,
-    ))
-      ..addText(String.fromCharCode(sun.codePoint));
-    var sunIcon = sunBuilder.build();
-    sunIcon.layout(const ParagraphConstraints(width: 60));
+    final sunIcon = Icons.wb_sunny;
+    TextPainter sunTextPainter = TextPainter(textDirection: TextDirection.rtl);
+    sunTextPainter.text = TextSpan(
+        text: String.fromCharCode(sunIcon.codePoint),
+        style: TextStyle(fontSize: 20.0, fontFamily: sunIcon.fontFamily));
+
+    // final sun = Icons.wb_sunny;
+    // var sunBuilder = ParagraphBuilder(ParagraphStyle(
+    //   fontFamily: sun.fontFamily,
+    // ))
+    //   ..addText(String.fromCharCode(sun.codePoint));
+    // var sunIcon = sunBuilder.build();
+    // sunIcon.layout(const ParagraphConstraints(width: 15));
     
     // draw handlers
     if (mode == CircularSliderMode.doubleHandler) {
       initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
       canvas.drawCircle(initHandler, 8.0, handler);
       canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
-      canvas.drawParagraph(sunIcon, Offset(initHandler.dx, initHandler.dy + radius + 5));
+      // canvas.drawParagraph(, Offset(initHandler.dx, initHandler.dy + radius + 5));
+      sunTextPainter.paint(canvas, Offset(initHandler.dx, initHandler.dy + 10));
     }
 
-    final moon = FontAwesomeIcons.moon;
-    var moonBuilder = ParagraphBuilder(ParagraphStyle(
-      fontFamily: moon.fontFamily,
-    ))
-      ..addText(String.fromCharCode(moon.codePoint));
-    var moonIcon = moonBuilder.build();
-    moonIcon.layout(const ParagraphConstraints(width: 60));
+    TextPainter moonTextPainter = TextPainter(textDirection: TextDirection.rtl);
+    moonTextPainter.text = TextSpan(
+        text: String.fromCharCode(FontAwesomeIcons.moon.codePoint),
+        style: TextStyle(
+            fontSize: 40.0,
+            fontFamily: FontAwesomeIcons.moon.fontFamily,
+            package: FontAwesomeIcons.moon.fontPackage));
+
+
+    // final moon = FontAwesomeIcons.moon;
+    // var moonBuilder = ParagraphBuilder(ParagraphStyle(
+    //   fontFamily: FontAwesomeIcons.moon.fontFamily,
+    // ))..addText(String.fromCharCode(FontAwesomeIcons.moon.codePoint));
+    // var moonIcon = moonBuilder.build();
+    // moonIcon.layout(const ParagraphConstraints(width: 15));
 
     endHandler = radiansToCoordinates(center, -pi / 2 + endAngle, radius);
     canvas.drawCircle(endHandler, 8.0, handler);
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
-      canvas.drawParagraph(moonIcon, Offset(endHandler.dx, endHandler.dy + radius + 5));
+      moonTextPainter.paint(canvas, Offset(endHandler.dx, endHandler.dy + 10));
+      //canvas.drawParagraph(moonIcon, Offset(endHandler.dx, endHandler.dy + radius + 5));
     }
   }
 
