@@ -50,21 +50,6 @@ class SliderPainter extends CustomPainter {
     Paint handler = _getPaint(color: handlerColor, style: PaintingStyle.fill);
     Paint handlerOutter = _getPaint(color: handlerColor, width: 2.0);
 
-    final sunIcon = Icons.wb_sunny;
-    TextPainter sunTextPainter = TextPainter(textDirection: TextDirection.rtl);
-    sunTextPainter.text = TextSpan(
-        text: String.fromCharCode(sunIcon.codePoint),
-        style: TextStyle(fontSize: 25.0, fontFamily: sunIcon.fontFamily));
-    sunTextPainter.layout();
-    
-    // draw handlers
-    if (mode == CircularSliderMode.doubleHandler) {
-      initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
-      canvas.drawCircle(initHandler, 8.0, handler);
-      canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
-      sunTextPainter.paint(canvas, Offset(initHandler.dx - 12, initHandler.dy - 40));
-    }
-
     TextPainter moonTextPainter = TextPainter(textDirection: TextDirection.rtl);
     moonTextPainter.text = TextSpan(
         text: String.fromCharCode(FontAwesomeIcons.solidMoon.codePoint),
@@ -73,12 +58,27 @@ class SliderPainter extends CustomPainter {
             fontFamily: FontAwesomeIcons.solidMoon.fontFamily,
             package: FontAwesomeIcons.solidMoon.fontPackage));
     moonTextPainter.layout();
+    
+    // draw handlers
+    if (mode == CircularSliderMode.doubleHandler) {
+      initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
+      canvas.drawCircle(initHandler, 8.0, handler);
+      canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
+      moonTextPainter.paint(canvas, Offset(endHandler.dx - 12, endHandler.dy - 43));
+    }
+
+    final sunIcon = Icons.wb_sunny;
+    TextPainter sunTextPainter = TextPainter(textDirection: TextDirection.rtl);
+    sunTextPainter.text = TextSpan(
+        text: String.fromCharCode(sunIcon.codePoint),
+        style: TextStyle(fontSize: 25.0, fontFamily: sunIcon.fontFamily));
+    sunTextPainter.layout();
 
     endHandler = radiansToCoordinates(center, -pi / 2 + endAngle, radius);
     canvas.drawCircle(endHandler, 8.0, handler);
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
-      moonTextPainter.paint(canvas, Offset(endHandler.dx - 12, endHandler.dy - 43));
+      sunTextPainter.paint(canvas, Offset(initHandler.dx - 12, initHandler.dy - 40));
     }
   }
 
