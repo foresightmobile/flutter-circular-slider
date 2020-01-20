@@ -1,6 +1,8 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'circular_slider_paint.dart' show CircularSliderMode;
 import 'utils.dart';
@@ -48,17 +50,35 @@ class SliderPainter extends CustomPainter {
     Paint handler = _getPaint(color: handlerColor, style: PaintingStyle.fill);
     Paint handlerOutter = _getPaint(color: handlerColor, width: 2.0);
 
+    final sun = Icons.wb_sunny;
+    var sunBuilder = ParagraphBuilder(ParagraphStyle(
+      fontFamily: sun.fontFamily,
+    ))
+      ..addText(String.fromCharCode(sun.codePoint));
+    var sunIcon = sunBuilder.build();
+    sunIcon.layout(const ParagraphConstraints(width: 60));
+    
     // draw handlers
     if (mode == CircularSliderMode.doubleHandler) {
       initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
       canvas.drawCircle(initHandler, 8.0, handler);
       canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
+      canvas.drawParagraph(sunIcon, Offset(initHandler.dx, initHandler.dy + radius + 5));
     }
+
+    final moon = FontAwesomeIcons.moon;
+    var moonBuilder = ParagraphBuilder(ParagraphStyle(
+      fontFamily: moon.fontFamily,
+    ))
+      ..addText(String.fromCharCode(moon.codePoint));
+    var moonIcon = moonBuilder.build();
+    moonIcon.layout(const ParagraphConstraints(width: 60));
 
     endHandler = radiansToCoordinates(center, -pi / 2 + endAngle, radius);
     canvas.drawCircle(endHandler, 8.0, handler);
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
+      canvas.drawParagraph(moonIcon, Offset(endHandler.dx, endHandler.dy + radius + 5));
     }
   }
 
