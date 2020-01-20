@@ -69,7 +69,7 @@ class SliderPainter extends CustomPainter {
     moonTextPainter.text = TextSpan(
         text: String.fromCharCode(FontAwesomeIcons.solidMoon.codePoint),
         style: TextStyle(
-            fontSize: 25.0,
+            fontSize: 22.0,
             fontFamily: FontAwesomeIcons.solidMoon.fontFamily,
             package: FontAwesomeIcons.solidMoon.fontPackage));
     moonTextPainter.layout();
@@ -78,7 +78,7 @@ class SliderPainter extends CustomPainter {
     canvas.drawCircle(endHandler, 8.0, handler);
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
-      moonTextPainter.paint(canvas, Offset(endHandler.dx - 12, endHandler.dy - 40));
+      moonTextPainter.paint(canvas, Offset(endHandler.dx - 12, endHandler.dy - 43));
     }
   }
 
