@@ -62,7 +62,7 @@ class SliderPainter extends CustomPainter {
       initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
       canvas.drawCircle(initHandler, 8.0, handler);
       canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
-      sunTextPainter.paint(canvas, Offset(initHandler.dx - 15, initHandler.dy - 30));
+      sunTextPainter.paint(canvas, Offset(initHandler.dx - 12, initHandler.dy - 40));
     }
 
     TextPainter moonTextPainter = TextPainter(textDirection: TextDirection.rtl);
@@ -78,7 +78,7 @@ class SliderPainter extends CustomPainter {
     canvas.drawCircle(endHandler, 8.0, handler);
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
-      moonTextPainter.paint(canvas, Offset(endHandler.dx - 15, endHandler.dy - 30));
+      moonTextPainter.paint(canvas, Offset(endHandler.dx - 12, endHandler.dy - 40));
     }
   }
 
