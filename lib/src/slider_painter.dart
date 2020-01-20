@@ -54,7 +54,7 @@ class SliderPainter extends CustomPainter {
     TextPainter sunTextPainter = TextPainter(textDirection: TextDirection.rtl);
     sunTextPainter.text = TextSpan(
         text: String.fromCharCode(sunIcon.codePoint),
-        style: TextStyle(fontSize: 30.0, fontFamily: sunIcon.fontFamily));
+        style: TextStyle(fontSize: 25.0, fontFamily: sunIcon.fontFamily));
     sunTextPainter.layout();
     
     // draw handlers
@@ -62,14 +62,14 @@ class SliderPainter extends CustomPainter {
       initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
       canvas.drawCircle(initHandler, 8.0, handler);
       canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
-      sunTextPainter.paint(canvas, Offset(initHandler.dx - 5, initHandler.dy - 10));
+      sunTextPainter.paint(canvas, Offset(initHandler.dx - 15, initHandler.dy - 30));
     }
 
     TextPainter moonTextPainter = TextPainter(textDirection: TextDirection.rtl);
     moonTextPainter.text = TextSpan(
         text: String.fromCharCode(FontAwesomeIcons.solidMoon.codePoint),
         style: TextStyle(
-            fontSize: 30.0,
+            fontSize: 25.0,
             fontFamily: FontAwesomeIcons.solidMoon.fontFamily,
             package: FontAwesomeIcons.solidMoon.fontPackage));
     moonTextPainter.layout();
@@ -78,7 +78,7 @@ class SliderPainter extends CustomPainter {
     canvas.drawCircle(endHandler, 8.0, handler);
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
-      moonTextPainter.paint(canvas, Offset(endHandler.dx - 5, endHandler.dy - 10));
+      moonTextPainter.paint(canvas, Offset(endHandler.dx - 15, endHandler.dy - 30));
     }
   }
 
