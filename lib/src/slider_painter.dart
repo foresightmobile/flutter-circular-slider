@@ -64,7 +64,7 @@ class SliderPainter extends CustomPainter {
       initHandler = radiansToCoordinates(center, -pi / 2 + startAngle, radius);
       canvas.drawCircle(initHandler, 8.0, handler);
       canvas.drawCircle(initHandler, handlerOutterRadius, handlerOutter);
-      moonTextPainter.paint(canvas, Offset(endHandler.dx - 12, endHandler.dy - 43));
+      moonTextPainter.paint(canvas, Offset(initHandler.dx - 12, initHandler.dy - 43));
     }
 
     final sunIcon = Icons.wb_sunny;
@@ -78,7 +78,7 @@ class SliderPainter extends CustomPainter {
     canvas.drawCircle(endHandler, 8.0, handler);
     if (showHandlerOutter) {
       canvas.drawCircle(endHandler, handlerOutterRadius, handlerOutter);
-      sunTextPainter.paint(canvas, Offset(initHandler.dx - 12, initHandler.dy - 40));
+      sunTextPainter.paint(canvas, Offset(endHandler.dx - 12, endHandler.dy - 40));
     }
   }
 
